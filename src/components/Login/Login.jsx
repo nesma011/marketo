@@ -45,10 +45,8 @@ export default function Login() {
           values
         );
         if (data.message === 'success') {
-          // Save both access and refresh tokens
           settoken(data.token); // for access token
-          localStorage.setItem('accessToken', data.token);
-          localStorage.setItem('refreshToken', data.refresh); // Save refresh token
+          localStorage.setItem('token', data.token);
 
           // Set up refresh token mechanism
           const refreshTokenPeriodically = async () => {
@@ -57,12 +55,11 @@ export default function Login() {
 
             const newAccessToken = await refreshToken(refresh);
             if (newAccessToken) {
-                localStorage.setItem('accessToken', newAccessToken);
+                localStorage.setItem('token', newAccessToken);
                 settoken(newAccessToken);
             } else {
                 // Handle refresh failure
-                localStorage.removeItem('accessToken');
-                localStorage.removeItem('refreshToken');
+                localStorage.removeItem('token');
                 navigate('/login');
             }
           };

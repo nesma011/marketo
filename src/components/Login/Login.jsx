@@ -13,26 +13,6 @@ export default function Login() {
   const [errorApi, setErrorApi] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  // Refresh token function
-  const refreshToken = async (refresh) => {
-    try {
-        const response = await fetch('https://ahmedmahmoud10.pythonanywhere.com/refresh/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ refresh }),
-        });
-
-        if (!response.ok) throw new Error('Token refresh failed');
-
-        const data = await response.json();
-        return data.access;
-    } catch (error) {
-        console.error('Error refreshing token:', error);
-        return null;
-    }
-  };
 
   // Form validation schema
   const validationSchema = yup.object().shape({

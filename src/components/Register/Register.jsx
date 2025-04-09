@@ -61,7 +61,7 @@ export default function Register() {
         if (data.message === 'success') {
           settoken(data.token);
           localStorage.setItem("token",data.token)
-          navigate('/classes');
+          navigate('/');
         }
       } catch (error) {
         const errorMessage = error.response ? error.response.data.message : error.message;

@@ -11,7 +11,7 @@ export default function WishContextProvider({children}) {
     token: localStorage.getItem("token"),
   };
 
-  function addProductToWish(productId) {
+   async function addProductToWish(productId) {
     return axios
       .post(
         `https://ecommerce.routemisr.com/api/v1/wishlist`,
@@ -26,7 +26,7 @@ export default function WishContextProvider({children}) {
       .catch((err) => err);
   }
 
-  function deleteWishItem(productId) {
+ async function deleteWishItem(productId) {
     return axios
       .delete(`https://ecommerce.routemisr.com/api/v1/wishlist/${productId}`, {
         headers,
@@ -35,7 +35,7 @@ export default function WishContextProvider({children}) {
       .catch((err) => err);
   }
 
-  function getUserWish() {
+ async function getUserWish() {
 
     return axios
       .get(`https://ecommerce.routemisr.com/api/v1/wishlist`, {
